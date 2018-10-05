@@ -56,23 +56,36 @@ class ScreenStateLayout : FrameLayout {
     private fun buildViews(context: Context, attributeSet: AttributeSet?) {
 
         attributeSet?.let { attrs ->
-            val a = context.obtainStyledAttributes(attrs, R.styleable.ScreenStateLayout)
-            if (a.hasValue(R.styleable.ScreenStateLayout_loading_layout)) {
-                val loadingLayoutRes = a.getResourceId(R.styleable.ScreenStateLayout_loading_layout, 0)
-                loadingView = ConstraintLayout(context)
-                View.inflate(context, loadingLayoutRes, loadingView)
+
+            context.obtainStyledAttributes(attrs, R.styleable.ScreenStateLayout).apply {
+
+                if (hasValue(R.styleable.ScreenStateLayout_loading_layout)) {
+                    val loadingLayoutRes = getResourceId(R.styleable.ScreenStateLayout_loading_layout, 0)
+                    loadingView = ConstraintLayout(context)
+                    View.inflate(context, loadingLayoutRes, loadingView)
+                } else {
+                    View.inflate(context, R.layout.layout_state_default_loading, loadingView)
+                }
+
+                if (hasValue(R.styleable.ScreenStateLayout_empty_layout)) {
+                    val emptyLayoutRes = getResourceId(R.styleable.ScreenStateLayout_empty_layout, 0)
+                    emptyView = ConstraintLayout(context)
+                    View.inflate(context, emptyLayoutRes, emptyView)
+                } else {
+                    View.inflate(context, R.layout.layout_state_default_empty, emptyView)
+                }
+
+                if (hasValue(R.styleable.ScreenStateLayout_error_layout)) {
+                    val errorLayoutRes = getResourceId(R.styleable.ScreenStateLayout_error_layout, 0)
+                    errorView = ConstraintLayout(context)
+                    View.inflate(context, errorLayoutRes, errorView)
+                } else {
+                    View.inflate(context, R.layout.layout_state_default_error, errorView)
+                }
+
+                recycle()
             }
-            if (a.hasValue(R.styleable.ScreenStateLayout_empty_layout)) {
-                val emptyLayoutRes = a.getResourceId(R.styleable.ScreenStateLayout_empty_layout, 0)
-                emptyView = ConstraintLayout(context)
-                View.inflate(context, emptyLayoutRes, emptyView)
-            }
-            if (a.hasValue(R.styleable.ScreenStateLayout_error_layout)) {
-                val errorLayoutRes = a.getResourceId(R.styleable.ScreenStateLayout_error_layout, 0)
-                errorView = ConstraintLayout(context)
-                View.inflate(context, errorLayoutRes, errorView)
-            }
-            a.recycle()
+
         }
 
     }
