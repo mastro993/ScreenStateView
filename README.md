@@ -34,13 +34,16 @@ dependencies {
 
 </com.ehzlab.screenstateview.ScreenStateLayout>
 ```
-Then in the code
+
+Attributes `empty_layout`, `error_layout` and `loading_layout` are the custom layout that ares showed in the different view states.
+
+You can change the view state like in the code below:
 
 ``` Kotlin
 
-ss_layout.state = ScreenState.Loading // Set the state to Loading to display loading animation
-ss_layout.state = ScreenState.Empty // Set the state to Empty to display empty layout
-ss_layout.state = ScreenState.Error // Sets the state to Error to display error layout
+ss_layout.state = ScreenState.Loading // Sets the view state to Loading state
+ss_layout.state = ScreenState.Empty // Sets the view state to Empty state
+ss_layout.state = ScreenState.Error // Sets the view state to Error state
 ss_layout.state = ScreenState.Show // Displays the normal view content
 
 ```
