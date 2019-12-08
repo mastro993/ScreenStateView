@@ -37,7 +37,7 @@ dependencies {
 </com.ehzlab.screenstateview.ScreenStateLayout>
 ```
 
-Attributes `empty_layout`, `error_layout` and `loading_layout` are the custom layout that ares showed in the different view states.
+Attributes `empty_layout`, `error_layout` and `loading_layout` are the custom layout showed in the different view states.
 
 You can change the view state like in the code below:
 
@@ -50,4 +50,4 @@ ss_layout.state = ScreenState.Show // Displays the normal view content
 
 ```
 
-In the above example I used my custom empty, loading and error states layout. If the attributes are left empty the library loads default layouts (very ugly, but better than nothing).
+In the above example I used my custom empty, loading and error states layout. If the attributes are left empty the library loads default layouts.
